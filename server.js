@@ -1,16 +1,17 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
-
-const connectDB = require("./config/db");
 require("dotenv/config");
 
-connectDB();
+const connectDB = require("./config/db");
+app.use(cors());
 
+connectDB();
 app.use(express.json());
 
 const musicRoutes = require("./routes/music");
 
-app.use("./", musicRoutes);
+app.use("/music", musicRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello World");

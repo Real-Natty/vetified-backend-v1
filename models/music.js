@@ -5,7 +5,7 @@ const songSchema = mongoose.Schema({
     type: String,
   },
   sales: {
-    type: Number,
+    type: String,
   },
 });
 
@@ -24,9 +24,9 @@ const musicSchema = mongoose.Schema({
       type: Number,
     },
   },
-  songs: { songSchema },
+  songs: [songSchema],
 });
 
-const musicModel = mongoose.model("music", musicSchema);
+const musicModel = mongoose.model("Music", musicSchema);
 
 module.exports = musicModel;

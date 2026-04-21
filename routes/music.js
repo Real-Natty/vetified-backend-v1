@@ -1,5 +1,5 @@
 const express = require("express");
-const route = express.Router();
+const router = express.Router();
 
 const {
   findMusic,
@@ -10,22 +10,25 @@ const {
   deleteNestedField,
   editNestedArray,
   deleteNestedArray,
+  listMusic,
 } = require("../controller/music");
 
-router.get(".find-music", findMusic);
+router.get("/find-music", findMusic);
 
-router.post(".create-music", createMusic);
+router.post("/create-music", createMusic);
 
-router.put("/edit-Field/id:", editField);
+router.put("/edit-Field/:id", editField);
 
-router.delete("/delete-Field/id:", deleteField);
+router.delete("/delete-Field/:id", deleteField);
 
-router.put("/edit-nested-Field/id:", editNestedField);
+router.put("/edit-nested-Field/:id", editNestedField);
 
-router.delete("/delete-nested-Field/id:", deleteNestedField);
+router.delete("/delete-nested-Field/:id", deleteNestedField);
 
-router.put("/edit-nested-array/arrayId:", editNestedArray);
+router.put("/edit-nested-array/:arrayId", editNestedArray);
 
-router.delete("/delete-nested-array/arrayId:", deleteNestedArray);
+router.delete("/delete-nested-array/:arrayId", deleteNestedArray);
+
+router.get("/list-music", listMusic);
 
 module.exports = router;

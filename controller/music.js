@@ -9,6 +9,16 @@ const findMusic = async (req, res) => {
     res.status(404).send("No music found ");
   }
 };
+
+// const listMusic = async (req, res) => {
+//   const listMusic = await MusicModel.list({});
+
+//   if (listMusic) {
+//     res.send(listMusic);
+//   } else {
+//     res.status(500).send("404 not found");
+//   }
+// };
 const createMusic = async (req, res) => {
   const { name, age, songs, social } = req.body;
 
@@ -21,7 +31,7 @@ const createMusic = async (req, res) => {
   if (addMusic) {
     res.send(addMusic);
   } else {
-    res.status(404).send("Unsuccessful ");
+    res.status(500).send("Unsuccessful ");
   }
 };
 
@@ -147,6 +157,14 @@ const deleteNestedArray = async (req, res) => {
     res.status(500).send("Not Successful");
   }
 };
+const listMusic = async (req, res) => {
+  const listMusic = await MusicModel.find({});
+
+  if (listMusic.length > 0) {
+    return res.json(listMusic);
+  }
+  return res.status(404).json({ message: "Music not found" });
+};
 
 module.exports = {
   findMusic,
@@ -157,4 +175,5 @@ module.exports = {
   deleteNestedField,
   editNestedArray,
   deleteNestedArray,
+  listMusic,
 };
